@@ -1,5 +1,5 @@
 # foodgram-project
-[![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows//badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
+[![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows/foodgram_workflow.yaml/badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
 
 [![Python](https://img.shields.io/badge/-Python-blue)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/-Django-darkgreen)](https://www.djangoproject.com/)
