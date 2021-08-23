@@ -2,7 +2,9 @@ from django.contrib import admin
 from import_export.admin import ImportMixin
 
 from recipes import models
+
 from .resources import IngredientResource
+
 
 @admin.register(models.Tag)
 class TagAdmin(admin.ModelAdmin):
@@ -24,7 +26,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
     def favorited(self, obj):
         return models.Favorite.objects.filter(recipe=obj).count()
-    
+
     favorited.short_description = 'В избранном'
 
 
@@ -35,17 +37,9 @@ class IngredientInRecipeAdmin(admin.ModelAdmin):
 
 @admin.register(models.Favorite)
 class FavoriteAdmin(admin.ModelAdmin):
-    list_display = ('user', 'recipe', 'date_added')
+    list_display = ('user', 'recipe', 'pub_date')
 
 
-@admin.register(models.Purchase)
+@admin.register(models.ShoppingList)
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('user', 'recipe', 'date_added')
-
-
-
-
-
-
-
-
+    list_display = ('user', 'recipe', 'pub_date')

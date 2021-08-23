@@ -1,9 +1,9 @@
-from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, RegexValidator
-
+from django.db import models
 
 User = get_user_model()
+
 
 class Tag(models.Model):
     name = models.CharField(
@@ -29,7 +29,8 @@ class Tag(models.Model):
                 regex='^[-a-zA-Z0-9_]+$',
                 message='Slug содержит недопустимые символы'
             )
-        ]
+        ],
+        help_text='Введите slug для тега',
     )
 
     class Meta:
@@ -53,9 +54,10 @@ class Ingredient(models.Model):
     )
 
     class Meta:
-        ordering = ('name', )
+        ordering = ('id', )
         verbose_name = 'ингредиент'
         verbose_name_plural = 'ингредиенты'
+        unique_together = ('name', 'measurement_unit')
 
     def __str__(self):
         return f'{self.name}, {self.measurement_unit}'
@@ -72,6 +74,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through='IngredientInRecipe',
+        through_fields=('recipe', 'ingredient'),
         verbose_name='Ингредиенты',
         help_text='Укажите ингредиенты и их количество',
     )
@@ -79,11 +82,13 @@ class Recipe(models.Model):
         Tag,
         related_name='recipes',
         verbose_name='Теги',
+        blank=True,
         help_text='Выберите один или несколько тегов',
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='recipes/',
+        upload_to='media/',
+        blank=True, null=True,
         help_text='Выберете изображение'
     )
     name = models.CharField(
@@ -96,7 +101,7 @@ class Recipe(models.Model):
         help_text='Опишите рецепт',
     )
     cooking_time = models.PositiveIntegerField(
-        verbose_name='Время приготовления',
+        verbose_name='Время приготовления, мин',
         validators=[MinValueValidator(
             limit_value=1,
             message='Значение не может быть меньше 1'
@@ -106,6 +111,7 @@ class Recipe(models.Model):
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации',
+        help_text='Укажите дату публикации рецепта',
     )
 
     class Meta:
@@ -121,11 +127,12 @@ class IngredientInRecipe(models.Model):
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
-        verbose_name='Ингредиент',
+        verbose_name='Ингредиент в рецепте',
     )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
+        verbose_name='Рецепт'
     )
     amount = models.PositiveIntegerField(
         verbose_name='Количество ингредиента',
@@ -146,15 +153,15 @@ class Favorite(models.Model):
         User,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
-        related_name='favorite_subscriber',
+        related_name='favorites',
     )
     recipe = models.ForeignKey(
         Recipe,
         verbose_name='Рецепт',
         on_delete=models.CASCADE,
-        related_name='favorite_recipe',
+        related_name='favorites',
     )
-    date_added = models.DateTimeField(
+    pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата добавления',
     )
@@ -166,7 +173,7 @@ class Favorite(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'recipe'],
-                name='favorite_user_recept_unique'
+                name='unique_favorite'
             )
         ]
 
@@ -174,25 +181,28 @@ class Favorite(models.Model):
         return f'Рецепт {self.recipe} в избранном у {self.user}'
 
 
-class Purchase(models.Model):
+class ShoppingList(models.Model):
     user = models.ForeignKey(
         User,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
-        related_name='purchase_list',
+        related_name='shopping_list',
+        help_text='Укажите владельца списка покупок'
     )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='customers',
+        related_name='shopping_list',
+        verbose_name='Рецепт для покупки',
+        help_text='Укажите рецепт, который нужно добавить в список покупок'
     )
-    date_added = models.DateTimeField(
+    pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата добавления',
     )
 
     class Meta:
-        ordering = ('-date_added',)
+        ordering = ('-pub_date',)
         verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'
         constraints = [

@@ -1,5 +1,9 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,24 +14,26 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
+    'kubernetes.docker.internal'
 ]
 
 INSTALLED_APPS = [
+    'users',
+    'recipes',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_filters',
 
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'djoser',
     'import_export',
-
-    'users',
-    'recipes',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +110,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
+RECIPES_LIMIT = 6
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -118,6 +125,8 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend'
     ],
 
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 6
@@ -128,7 +137,9 @@ DJOSER = {
     'LOGIN_FIELD': 'email',
     'HIDE_USERS': False,
     'SERIALIZERS': {
+        'user_create': 'users.serializers.CustomUserCreateSerializer',
         'user': 'users.serializers.UserSerializer',
+        'current_user': 'users.serializers.UserSerializer'
     },
 
     'PERMISSIONS': {

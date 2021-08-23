@@ -4,19 +4,19 @@
     - [ ] - Модель:
         - [ ] - 
     - [ ] - URL:
-        - [ ] - GET - список пользователей
-        - [ ] - POST - регистрация пользователей
-        - [ ] - GET - профиль пользователя
-        - [ ] - GET - текущий пользователь
-        - [ ] - POST - изменение пароля
-        - [ ] - POST - получить токен авторизации
-        - [ ] - POST - удаление токена
+        - [ ] - GET - список пользователей - All - http://localhost:8000/api/users/
+        - [x] - POST - регистрация пользователей - All - http://localhost:8000/api/users/
+        - [x] - GET - профиль пользователя - Token - http://localhost:8000/api/users/2/
+        - [x] - GET - текущий пользователь - Token - http://localhost:8000/api/users/me/
+        - [x] - POST - изменение пароля - Token - http://localhost:8000/api/users/set_password/
+        - [x] - POST - получить токен авторизации - All - http://localhost:8000/api/auth/token/login/
+        - [x] - POST - удаление токена - Token  - http://localhost:8000/api/auth/token/logout/
 - [ ] - Теги
     - [ ] - Модель:
         - [ ] - 
-    - [ ] - URL:
-        - [ ] - GET - список тегов
-        - [ ] - GET - получение тега
+    - [X] - URL:
+        - [X] - GET - список тегов - All - http://localhost:8000/api/tags/
+        - [X] - GET - получение тега - All - http://localhost:8000/api/tags/1/
 - [ ] - Рецепты
     - [ ] - Модель:
         - [ ] -
