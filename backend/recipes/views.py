@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
-from rest_framework import (generics, status, viewsets)
+from rest_framework import generics, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -10,26 +10,14 @@ from rest_framework.views import APIView
 from users.models import Follow
 
 from .filters import IngredientNameFilter, RecipeFilter
-from .models import (
-    Favorite,
-    Ingredient,
-    IngredientInRecipe,
-    Recipe,
-    ShoppingList,
-    Tag
-)
+from .models import (Favorite, Ingredient, IngredientInRecipe, Recipe,
+                     ShoppingList, Tag)
 from .paginators import CustomPagination
 from .permissions import IsOwnerOrAdminOrReadOnly
-from .serializers import (
-    CreateRecipeSerializer,
-    FavoriteSerializer,
-    FollowSerializer,
-    IngredientSerializer,
-    ListRecipeSerializer,
-    ShoppingListSerializer,
-    ShowFollowSerializer,
-    TagSerializer
-)
+from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
+                          FollowSerializer, IngredientSerializer,
+                          ListRecipeSerializer, ShoppingListSerializer,
+                          ShowFollowSerializer, TagSerializer)
 
 User = get_user_model()
 
