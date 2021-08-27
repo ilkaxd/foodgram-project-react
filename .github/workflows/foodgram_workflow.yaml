@@ -29,6 +29,22 @@ jobs:
         python -m flake8
         pytest
 
+  build_and_push_to_docker_hub:
+    name: Build project and push it to docker hub
+    runs-on: ubuntu-latest
+    needs: [tests]
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
+  deploy:
+    name: Deploy server on Yandex.Cloud
+    runs-on: ubuntu-latest
+    needs: [build_and_push_to_docker_hub]
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
   send_message:
     name: Send message to telegram
     runs-on: ubuntu-latest
