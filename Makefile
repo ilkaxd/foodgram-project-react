@@ -1,14 +1,11 @@
 deps:
+	python -m pip install --upgrade pip
 	pip install --upgrade pip
 	pip install -r requirements.txt
-
-lint:
+fix:
 	isort backend
 	flake8 backend
-
 test:
-	cd backend && pytest
-	rm -r backend/media/recipes
-
-coverage:
-	cd backend && pytest --cov=./ --cov-report=xml
+	cd backend
+	flake8
+	pytest
