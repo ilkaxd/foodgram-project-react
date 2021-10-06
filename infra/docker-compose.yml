@@ -1,50 +1,53 @@
-version: '3.8'
-
+version: '3.3'
 services:
   db:
-    container_name: postgres_foodgram
-    image: postgres:12.4-alpine
-    restart: always
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - ./.env
+      image: postgres:12.4
+      container_name: foodgram_db
+      volumes:
+        - postgres_data:/var/lib/postgresql/data/
+      env_file:
+        - .env
+
+  backend:
+      # image: ilkaxd/foodgram_backend:v04.10.2021
+      build:
+        context: ../backend
+        dockerfile: Dockerfile
+      container_name: foodgram_backend
+      restart: always
+      depends_on:
+        - db
+      volumes:
+        - static_files:/code/static/
+        - media_files:/code/media/
+      env_file:
+        - .env
 
   frontend:
-    image: ilkaxd/foodgram_frontend:latest
+    # image: ilkaxd/foodgram_frontend:v04.10.2021
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: foodgram_frontend
+    restart: always
     volumes:
       - ../frontend/:/app/result_build/
 
-  backend:
-    image: ilkaxd/foodgram_backend:latest
-    restart: always
-    depends_on:
-      - db
-    volumes:
-      - static_value:/code/static/
-      - media_value:/code/media/
-    env_file:
-      - ./.env
-
   nginx:
     image: nginx:1.19.3
-    restart: always
     ports:
       - 80:80
     volumes:
-      - static_value:/static/
-      - media_value:/media/
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/redoc.html:/usr/share/nginx/html/api/docs/redoc.html
       - ../docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
+      - static_files:/static/
+      - media_files:/media/
     depends_on:
-      - frontend
       - backend
-    env_file:
-      - ./.env
 
 volumes:
   postgres_data:
-  static_value:
-  media_value:
+  static_files:
+  media_files:
