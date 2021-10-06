@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 from config.extensions.models import TimestampedModel
 from recipes.models import Recipe

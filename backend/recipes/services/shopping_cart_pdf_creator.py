@@ -1,11 +1,12 @@
 import io
 
-from config.settings.base import BASE_DIR
 from django.db.models import Sum
-from recipes.models import RecipeIngredient
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
+
+from config.settings.base import BASE_DIR
+from recipes.models import RecipeIngredient
 
 FONTS_ROOT = f'{BASE_DIR}/staticfiles/fonts'
 

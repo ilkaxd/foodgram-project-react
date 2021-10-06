@@ -1,6 +1,6 @@
+import matplotlib._color_data as mcd
 from django.core.validators import RegexValidator
 from django.db import models
-import matplotlib._color_data as mcd
 
 from config.extensions.models import DefaultModel
 

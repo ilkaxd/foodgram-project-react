@@ -1,8 +1,7 @@
+from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.db.models import Count, Exists, OuterRef, Q, Value
-from django.db.models import F
+from django.db.models import Count, Exists, F, OuterRef, Q, Value
 
 from config.extensions.models import DefaultUserQuerySet
 
@@ -106,9 +105,6 @@ class CustomUser(AbstractUser):
 
     def get_short_name(self):
         return self.first_name
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

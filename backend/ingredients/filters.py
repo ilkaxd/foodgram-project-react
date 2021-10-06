@@ -1,4 +1,5 @@
 import django_filters as filters
+
 from ingredients.models import Ingredient
 
 

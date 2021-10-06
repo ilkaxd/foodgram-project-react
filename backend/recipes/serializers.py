@@ -4,14 +4,9 @@ from rest_framework.validators import UniqueTogetherValidator
 
 from config.extensions.serializers import ModelSerializer
 from ingredients.models import Ingredient
-from recipes.models import (
-    Favorite,
-    Recipe,
-    RecipeIngredient,
-    ShoppingCart
-)
-from tags.serializers import TagSerializer
+from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 from tags.models import Tag
+from tags.serializers import TagSerializer
 from users.serializers import UserSerializer
 
 

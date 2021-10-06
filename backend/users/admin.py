@@ -6,7 +6,6 @@ from rest_framework.authtoken.models import TokenProxy
 
 from users.models import Subscribe
 
-
 User = get_user_model()
 
 admin.site.unregister(TokenProxy)

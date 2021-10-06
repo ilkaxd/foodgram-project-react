@@ -1,25 +1,16 @@
+from django.http import FileResponse
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.http import FileResponse
 
 from config.extensions.permissions import IsAuthor
 from config.extensions.views import AppViewSet
 from recipes import serializers
 from recipes.filters import RecipeFilter
-from recipes.models import (
-    Favorite,
-    Recipe,
-    ShoppingCart
-)
-from recipes.services import (
-    AddToFavorites,
-    AddToShoppingCart,
-    DeleteFromFavorites,
-    DeleteFromShoppingCart,
-)
-
+from recipes.models import Favorite, Recipe, ShoppingCart
+from recipes.services import (AddToFavorites, AddToShoppingCart,
+                              DeleteFromFavorites, DeleteFromShoppingCart)
 
 
 class RecipeViewSet(AppViewSet):

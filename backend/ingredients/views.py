@@ -1,12 +1,9 @@
-from django_filters import filterset
-import rest_framework
-from rest_framework import permissions
-from ingredients.serializers import IngredientSerializer
-from ingredients.filters import IngredientFilter
-from ingredients.models import Ingredient
-
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import ReadOnlyModelViewSet
+
+from ingredients.filters import IngredientFilter
+from ingredients.models import Ingredient
+from ingredients.serializers import IngredientSerializer
 
 
 class IngredientViewSet(ReadOnlyModelViewSet):

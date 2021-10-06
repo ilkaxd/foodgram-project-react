@@ -1,10 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Count, Exists, OuterRef, Q, Value
-from django.contrib.auth import get_user_model
 
 from config.extensions.models import DefaultQuerySet, TimestampedModel
 from recipes.models import Favorite
-
 from tags.models import Tag
 
 User = get_user_model()

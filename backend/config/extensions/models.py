@@ -22,6 +22,7 @@ class DefaultQuerySet(models.QuerySet):
     def with_last_update(self):
         return self.annotate(last_update=Coalesce(F('modified'), F('created')))
 
+
 class DefaultManager(models.Manager):
     def __getattr__(self, name):
         if hasattr(self._queryset_class, 'Q') and hasattr(
@@ -34,7 +35,6 @@ class DefaultManager(models.Manager):
             f'{self._queryset_class.__name__}.Q '
             'does not have `{name}` defined.',
         )
-
 
 
 class DefaultModel(models.Model):

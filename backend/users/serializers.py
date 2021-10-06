@@ -1,15 +1,13 @@
 from django.contrib.auth import get_user_model
-from djoser.serializers import UserCreateSerializer, UserSerializer
+from djoser.serializers import \
+    UserCreateSerializer as DjoserUserCreateSerializer
+from djoser.serializers import UserSerializer
+from djoser.serializers import UserSerializer as DjoserUserSerializer
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
-from djoser.serializers import UserSerializer as DjoserUserSerializer
-from djoser.serializers import (
-    UserCreateSerializer as DjoserUserCreateSerializer,
-)
-
-from users.models import Subscribe
 from config.extensions.serializers import ModelSerializer
+from users.models import Subscribe
 
 User = get_user_model()
 

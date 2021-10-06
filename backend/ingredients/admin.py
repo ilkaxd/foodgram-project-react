@@ -1,8 +1,8 @@
 from django.contrib import admin
 from import_export.admin import ImportMixin
 
-from ingredients.resources import IngredientResource
 from ingredients.models import Ingredient
+from ingredients.resources import IngredientResource
 
 
 @admin.register(Ingredient)

@@ -2,13 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 
-from recipes.models import Recipe, RecipeIngredient
-from recipes.models import (
-    Favorite,
-    Recipe,
-    RecipeIngredient,
-    ShoppingCart
-)
+from recipes.models import Favorite, Recipe, RecipeIngredient, ShoppingCart
 
 
 @admin.register(Favorite)
@@ -25,8 +19,6 @@ class FavoriteAdmin(admin.ModelAdmin):
         if favorite is not None:
             return ('user', 'recipe')
         return tuple()
-
-
 
 
 class RecipeIngredientInline(admin.StackedInline):

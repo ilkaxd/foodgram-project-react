@@ -1,15 +1,17 @@
 [flake8]
-
-ignore = F402, F403, F405, F811, N802, N803, N806, W503
-
 max_line_length = 79
 
 exclude =
-    */migrations/,
-    venv/,
-    env/
+    frontend/
+    data/
+    docs/
+    */migrations/
+    venv/
+    *base.py
+
 
 per-file-ignores =
+    */settings/*: F403, F405
     */tests/*: JS101
     */components/*: E501
 
