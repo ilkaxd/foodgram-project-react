@@ -6,5 +6,5 @@ fix:
 	isort backend/
 test:
 	cd backend
-	flake8
+	flake8 backend/
 	pytest
