@@ -68,7 +68,9 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             # sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
             sudo docker stop $(sudo docker ps -a -q)
-            
+            sudo docker-compose exec -T backend python manage.py makemigrations --noinput
+            sudo docker-compose exec -T backend python manage.py migrate --noinput
+            sudo docker-compose exec -T backend python manage.py collectstatic --noinput
       # - name: Copy files via SSH
       #   uses: appleboy/scp-action@master
       #   with:
@@ -107,9 +109,7 @@ jobs:
 
             sudo docker-compose up --detach
 
-            sudo docker-compose exec -T backend python manage.py makemigrations --noinput
-            sudo docker-compose exec -T backend python manage.py migrate --noinput
-            sudo docker-compose exec -T backend python manage.py collectstatic --noinput
+
 
 
   send_message:
