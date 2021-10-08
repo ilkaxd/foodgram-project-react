@@ -9,10 +9,7 @@ services:
         - .env
 
   backend:
-      image: ilkaxd/foodgram_backend:v04.10.2021
-      # build:
-      #   context: ../backend
-      #   dockerfile: Dockerfile
+      image: ilkaxd/foodgram_backend:latest
       container_name: foodgram_backend
       restart: always
       depends_on:
