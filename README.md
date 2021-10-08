@@ -1,4 +1,7 @@
 # foodgram-project
+
+[Ссылка на проект](http://62.84.113.79/)
+
 [![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows/foodgram_workflow.yaml/badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
 
 [![Python](https://img.shields.io/badge/-Python-blue)](https://www.python.org/)

@@ -48,7 +48,6 @@ jobs:
       with:
         push: true
         context: ./backend
-        # file: 'backend/Dockerfile'
         tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
     - name: Push frontend to Docker Hub
@@ -56,7 +55,6 @@ jobs:
       with:
         push: true
         context: ./frontend
-        # file: 'backend/Dockerfile'
         tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
 
   deploy:
@@ -74,7 +72,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "infra/docker-compose.yml,infra/nginx.conf,frontend/,data/,docs/,backend/"
+          source: "infra/,data/,docs/"
           target: "foodgram"
           overwrite: true
 
@@ -89,9 +87,11 @@ jobs:
             cd foodgram/infra/
 
             sudo docker-compose down
-            sudo docker-compose rm -f backend
-            sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
+            
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
+            rm .env -f
             touch .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
@@ -103,7 +103,7 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo DOMAIN_NAME=${{ secrets.DOMAIN_NAME }} >> .env
 
-            sudo docker-compose up --detach
+            sudo docker-compose up -d --build
 
             sudo docker-compose exec -T backend python manage.py makemigrations --noinput
             sudo docker-compose exec -T backend python manage.py migrate --noinput
