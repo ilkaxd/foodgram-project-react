@@ -16,13 +16,15 @@ jobs:
           python-version: 3.8
 
       - name: Install dependencies
-        run: make deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
+          pip install -r requirements.txt
       
-      # - name: Apply isort, flake8
-      #   run: make fix
-
-      # - name: Test with django tests
-      #   run: make test
+      - name: Test with flake8 and django tests
+        run: |
+          python -m flake8
+          pytest
 
   build_and_push_to_docker_hub:
     name: Build project and push it to docker hub
