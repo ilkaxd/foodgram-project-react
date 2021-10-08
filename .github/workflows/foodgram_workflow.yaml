@@ -63,8 +63,9 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: 'infra/docker-compose.yml, infra/nginx.conf'
+          source: 'infra/docker-compose.yml'
           overwrite: true
+
       - name: Executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
