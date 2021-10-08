@@ -1,24 +1,26 @@
 version: '3.3'
 services:
   db:
-      image: postgres:12.4
-      container_name: foodgram_db
-      volumes:
-        - postgres_data:/var/lib/postgresql/data/
-      env_file:
-        - .env
+    image: postgres:12.4
+    container_name: foodgram_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
 
   backend:
-      image: ilkaxd/foodgram_backend:latest
-      container_name: foodgram_backend
-      restart: always
-      depends_on:
-        - db
-      volumes:
-        - static_files:/code/static/
-        - media_files:/code/media/
-      env_file:
-        - .env
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: foodgram_backend
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - static_files:/code/static/
+      - media_files:/code/media/
+    env_file:
+      - .env
 
   frontend:
     build:
