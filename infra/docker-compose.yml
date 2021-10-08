@@ -9,9 +9,7 @@ services:
       - .env
 
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: ilkaxd/foodgram_backend:latest
     container_name: foodgram_backend
     restart: always
     depends_on:
@@ -23,12 +21,12 @@ services:
       - .env
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: ilkaxd/foodgram_frontend:latest
     container_name: foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
+    depends_on:
+      - db
 
   nginx:
     image: nginx:1.19.3
