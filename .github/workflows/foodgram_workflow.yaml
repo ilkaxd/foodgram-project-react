@@ -65,4 +65,3 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           source: 'infra/docker-compose.yml, infra/nginx.conf
           overwrite: true
-
