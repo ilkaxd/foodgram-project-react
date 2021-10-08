@@ -63,5 +63,5 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: 'infra/docker-compose.yml, infra/nginx.conf
+          source: infra/docker-compose.yml, infra/nginx.conf
           overwrite: true
