@@ -68,6 +68,9 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             # sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
             sudo docker stop $(sudo docker ps -a -q)
+
+            sudo docker-compose up --detach
+
             sudo docker-compose exec -T backend python manage.py makemigrations --noinput
             sudo docker-compose exec -T backend python manage.py migrate --noinput
             sudo docker-compose exec -T backend python manage.py collectstatic --noinput
@@ -106,9 +109,6 @@ jobs:
       #       echo DB_HOST=${{ secrets.DB_HOST }} >> .env 
       #       echo DB_PORT=${{ secrets.DB_PORT }} >> .env
       #       echo DOMAIN_NAME=${{ secrets.DOMAIN_NAME }} >> .env
-
-            sudo docker-compose up --detach
-
 
 
 
