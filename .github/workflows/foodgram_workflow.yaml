@@ -41,6 +41,13 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Push frontend to Docker Hub
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        file: 'frontend/Dockerfile'
+        tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
+
     - name: Push backend to Docker Hub
       uses: docker/build-push-action@v2
       with:
@@ -48,12 +55,7 @@ jobs:
         file: 'backend/Dockerfile'
         tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
-    - name: Push frontend to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        file: 'frontend/Dockerfile'
-        tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
+
 
   deploy:
     name: Deploy server on Yandex.Cloud
