@@ -24,12 +24,10 @@ services:
         - .env
 
   frontend:
-    image: ilkaxd/foodgram_frontend:v04.10.2021
-    # build:
-    #   context: ../frontend
-    #   dockerfile: Dockerfile
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
     container_name: foodgram_frontend
-    restart: always
     volumes:
       - ../frontend/:/app/result_build/
 
