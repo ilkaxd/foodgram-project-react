@@ -75,12 +75,16 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           scripts: |
-            cd foodgram/infra
+            cd foodgram/
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
+
+            cd infra/
             sudo docker-compose down
             sudo docker-compose rm -f backend
             sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
             touch .env
+            echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
@@ -89,7 +93,9 @@ jobs:
             echo DB_HOST=${{ secrets.DB_HOST }} >> .env 
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo DOMAIN_NAME=${{ secrets.DOMAIN_NAME }} >> .env
+
             sudo docker-compose up --detach
+
             sudo docker-compose exec -T backend python manage.py makemigrations --noinput
             sudo docker-compose exec -T backend python manage.py migrate --noinput
             sudo docker-compose exec -T backend python manage.py collectstatic --noinput
