@@ -63,7 +63,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "infra/docker-compose.yml,infra/nginx.conf,frontend/"
+          source: "infra/docker-compose.yml,infra/nginx.conf,frontend/,data/,docs/"
           target: "foodgram"
           overwrite: true
 
@@ -79,6 +79,7 @@ jobs:
             sudo docker-compose down
             sudo docker-compose rm -f backend
             sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
+
             touch .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
