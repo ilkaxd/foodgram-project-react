@@ -1,0 +1,26 @@
+name: Foodgram-app workflow
+
+on: [push, workflow_dispatch]
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository exists
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: make deps
+      
+      # - name: Apply isort, flake8
+      #   run: make fix
+
+      # - name: Test with django tests
+      #   run: make test
+
