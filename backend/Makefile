@@ -12,7 +12,6 @@ lint:
 
 test:
 	cd backend && pytest
-	rm -r backend/media/recipes
 
 coverage:
 	cd backend && pytest --cov=./ --cov-report=xml
