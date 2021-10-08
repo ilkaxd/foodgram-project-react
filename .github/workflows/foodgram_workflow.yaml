@@ -97,6 +97,7 @@ jobs:
             sudo docker-compose exec -T backend python manage.py migrate --noinput
             sudo docker-compose exec -T backend python manage.py collectstatic --noinput
 
+
   send_message:
     name: Send message to telegram
     runs-on: ubuntu-latest
