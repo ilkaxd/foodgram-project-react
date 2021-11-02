@@ -32,8 +32,8 @@ class RecipeIngredient(DefaultModel):
     )
 
     class Meta:
-        verbose_name = 'ингредиент'
-        verbose_name_plural = 'ингредиенты'
+        verbose_name = 'ингредиент в рецепте'
+        verbose_name_plural = 'ингредиенты в рецепте'
         default_related_name = 'recipeingredients'
         constraints = (
             models.CheckConstraint(

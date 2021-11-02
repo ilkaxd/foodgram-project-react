@@ -189,7 +189,7 @@ paths:
       - Рецепты
     post:
       security:
-        - token: []
+        - Token: []
       operationId: Создание рецепта
       description: 'Доступно только авторизованному пользователю'
       parameters: []
@@ -728,6 +728,7 @@ components:
           type: boolean
           readOnly: true
           description: "Подписан ли текущий пользователь на этого"
+          example: false
       required:
       - username
     UserWithRecipes:
@@ -819,7 +820,7 @@ components:
           description: 'Находится ли в избранном'
         is_in_shopping_cart:
           type: boolean
-          description: 'Находится ли в избранном'
+          description: 'Находится ли в корзине'
         name:
           type: string
           maxLength: 200
