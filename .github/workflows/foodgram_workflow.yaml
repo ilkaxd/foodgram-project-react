@@ -85,8 +85,8 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           scripts: |
             cd foodgram/infra/
-            rm .env -f
-            sudo touch .env
+            # rm .env -f
+            # sudo touch .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
