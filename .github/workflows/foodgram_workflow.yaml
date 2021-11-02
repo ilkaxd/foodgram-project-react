@@ -86,7 +86,7 @@ jobs:
           scripts: |
             cd foodgram/infra/
 
-            rm .env -f
+            # rm .env -f
 
             touch .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
