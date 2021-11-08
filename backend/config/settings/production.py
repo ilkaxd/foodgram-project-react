@@ -5,6 +5,8 @@ ALLOWED_HOSTS = config(
     cast=lambda var: [host.strip() for host in var.split()]
 )
 
+DEBUG = True
+
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
