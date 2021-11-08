@@ -116,7 +116,7 @@ jobs:
             echo ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} >> .env
 
             echo DEBUG=${{ secrets.DEBUG }} >> .env
-            echo SECRET_KEY=django-insecure-opnrwu7yg#\_eayc(u5(@1g&8k*9q03-revs0+2^6g3e77*n4bk >> .env
+            echo SECRET_KEY=django-insecure-opnrwu7ygn4bk >> .env
 
             sudo docker-compose down
 
