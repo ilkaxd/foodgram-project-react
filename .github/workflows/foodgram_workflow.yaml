@@ -89,8 +89,8 @@ jobs:
             rm .env -f
             touch .env
 
-            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo DEBUG=${{ secrets.DEBUG }} >> .env
+            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
 
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
