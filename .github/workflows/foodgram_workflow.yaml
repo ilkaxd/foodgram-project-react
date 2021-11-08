@@ -89,6 +89,10 @@ jobs:
             rm .env -f
             touch .env
 
+            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+            echo DEBUG=${{ secrets.DEBUG }} >> .env
+            echo DJANGO_SETTING_MODULE=${{ secrets.DJANGO_SETTING_MODULE }} >> .env
+
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
             echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
@@ -114,9 +118,6 @@ jobs:
 
             echo DOMAIN_NAME=${{ secrets.DOMAIN_NAME }} >> .env
             echo ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} >> .env
-
-            echo DEBUG=${{ secrets.DEBUG }} >> .env
-            echo SECRET_KEY=django-insecure-opnrwu7ygn4bk >> .env
 
             sudo docker-compose down
 
