@@ -1,11 +1,15 @@
 from .base import *
 
+DEBUG = True
+
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
     cast=lambda var: [host.strip() for host in var.split()]
 )
 
-DEBUG = True
+print(ALLOWED_HOSTS)
+
+
 
 DATABASES = {
     'default': {
