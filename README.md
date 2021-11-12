@@ -1,6 +1,10 @@
 # foodgram-project
 
-[Ссылка на проект](http://62.84.113.79/)
+[Ссылка на проект](http://84.201.139.234/)
+
+Админ: admin@yandex.ru
+
+Пароль: admin
 
 [![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows/foodgram_workflow.yaml/badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
 
