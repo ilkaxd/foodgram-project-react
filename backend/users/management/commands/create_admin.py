@@ -13,6 +13,7 @@ class Command(BaseCommand):
         if User.objects.count() == 0:
             User.objects.create_superuser(
                 email='admin@yandex.ru',
+                first_name='admin',
                 username='admin',
                 password='admin'
             )
