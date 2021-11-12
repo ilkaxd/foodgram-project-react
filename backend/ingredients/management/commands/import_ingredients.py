@@ -12,6 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         path_to_json = os.path.join('data', 'ingredients.json')
+        print('!!!!!!!!!!', os.getcwd(), path_to_json)
         with open(path_to_json, 'r', encoding='utf-8') as read_file:
             ingredients = json.load(read_file)
             data = []
