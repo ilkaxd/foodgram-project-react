@@ -120,6 +120,8 @@ jobs:
             echo ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} >> .env
 
             sudo docker-compose down
+            sudo docker-compose rm -f backend
+            sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
