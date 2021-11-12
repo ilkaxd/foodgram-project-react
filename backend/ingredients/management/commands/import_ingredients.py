@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = 'Импортируем ингредиенты'
 
     def handle(self, *args, **options):
-        path_to_json = os.path.join('..', 'data', 'ingredients.json')
+        path_to_json = os.path.join('data', 'ingredients.json')
         with open(path_to_json, 'r', encoding='utf-8') as read_file:
             ingredients = json.load(read_file)
             data = []
