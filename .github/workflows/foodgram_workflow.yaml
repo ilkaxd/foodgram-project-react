@@ -106,10 +106,10 @@ jobs:
             echo TIME_ZONE=${{ secrets.TIME_ZONE }} >> .env
 
             echo EMAIL_HOST_USER=${{ secrets.EMAIL_HOST_USER }} >> .env
-            echo EMAIL_PASSWORD=${{ secrets.EMAIL_HOST_USER }} >> .env
-            echo EMAIL_HOST=${{ secrets.EMAIL_HOST_USER }} >> .env
-            echo EMAIL_PORT=${{ secrets.EMAIL_HOST_USER }} >> .env
-            echo EMAIL_USE_TLS=${{ secrets.EMAIL_HOST_USER }} >> .env
+            echo EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }} >> .env
+            echo EMAIL_HOST=${{ secrets.EMAIL_HOST }} >> .env
+            echo EMAIL_PORT=${{ secrets.EMAIL_PORT }} >> .env
+            echo EMAIL_USE_TLS=${{ secrets.EMAIL_USE_TLS }} >> .env
 
             echo SESSION_COOKIE_SECURE=${{ secrets.SESSION_COOKIE_SECURE }} >> .env
             echo CSRF_COOKIE_SECURE=${{ secrets.CSRF_COOKIE_SECURE }} >> .env
