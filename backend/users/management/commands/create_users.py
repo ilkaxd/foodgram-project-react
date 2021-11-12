@@ -15,10 +15,10 @@ class Command(BaseCommand):
     help = 'Создаём пользователей'
 
     def handle(self, *args, **options):
-        for (first_name, second_name, email, username, password) in users:
+        for (first_name, last_name, email, username, password) in users:
             User.objects.get_or_create(
                 first_name=first_name,
-                second_name=second_name,
+                last_name=last_name,
                 email=email,
                 username=username,
                 password=password
