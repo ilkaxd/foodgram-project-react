@@ -6,6 +6,8 @@ from config.extensions.models import DefaultQuerySet, TimestampedModel
 from recipes.models import Favorite
 from tags.models import Tag
 
+from config.extensions.validators import GteMinValueValidator
+
 User = get_user_model()
 
 
@@ -75,7 +77,15 @@ class Recipe(TimestampedModel):
     name = models.CharField('название', max_length=256)
     text = models.TextField('описание рецепта')
     image = models.ImageField('изображение', upload_to='recipes/images/')
-    cooking_time = models.PositiveSmallIntegerField('время приготовления')
+    cooking_time = models.PositiveSmallIntegerField(
+        'время приготовления',
+        validators=[
+            GteMinValueValidator(
+                0,
+                'Введите число больше нуля или удалите ингредиент.',
+            ),
+        ]
+    )
     ingredients = models.ManyToManyField(
         'ingredients.Ingredient',
         through='recipes.RecipeIngredient',
