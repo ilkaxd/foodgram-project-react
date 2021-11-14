@@ -135,7 +135,6 @@ jobs:
             sudo docker-compose exec -T backend python manage.py create_tags
             sudo docker-compose exec -T backend python manage.py import_ingredients
             sudo docker-compose exec -T backend python manage.py create_admin
-            sudo docker-compose exec -T backend python manage.py create_users
 
   send_message:
     name: Send message to telegram

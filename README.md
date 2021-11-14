@@ -6,6 +6,12 @@
 
 Пароль: admin
 
+Изменения:
+- Добавил 5 пользователей:
+- Для каждого пользователя добавил рецептов:
+- Добавил ограничение на минимальное время приготовления
+- Добавил разрешение на изменение рецепта только автору
+
 [![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows/foodgram_workflow.yaml/badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
 
 [![Python](https://img.shields.io/badge/-Python-blue)](https://www.python.org/)
