@@ -7,8 +7,17 @@
 Пароль: admin
 
 Изменения:
-- Добавил 5 пользователей:
+- Добавил 4 пользователей:
+    ivanov@yandex.ru - 353114ra
+    allegrova@yandex.ru - 353114ra
+    vaska@yandex.ru - superVaska
+    trener@yandex.ru - useLess1
+
 - Для каждого пользователя добавил рецептов:
+    ivanov@yandex.ru - 10
+    allegrova@yandex.ru - 6
+    vaska@yandex.ru - 5
+    trener@yandex.ru - 3
 - Добавил ограничение на минимальное время приготовления
 - Добавил разрешение на изменение рецепта только автору
 

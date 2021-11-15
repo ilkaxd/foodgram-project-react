@@ -10,7 +10,7 @@ users = (
     ('Ирина', 'Аллегрова', 'allegrova@yandex.ru', 'irina', '353114ra'),
     ('Василий', 'Пупкин', 'vaska@yandex.ru', 'vaska', 'superVaska'),
     ('Турбо', 'Улиточник', 'turbo@yandex.ru', 'turbo', 'megaTurbo'),
-    ('Тренер', 'Тренеровочный', 'trener@yandex.ru', 'trener', 'useless')
+    ('Тренер', 'Тренеровочный', 'trener@yandex.ru', 'trener', 'useLess1')
 )
 
 class Command(BaseCommand):
