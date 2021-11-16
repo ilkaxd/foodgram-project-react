@@ -18,8 +18,8 @@
     allegrova@yandex.ru - 6
     vaska@yandex.ru - 5
     trener@yandex.ru - 3
-- Добавил ограничение на минимальное время приготовления
-- Добавил разрешение на изменение рецепта только автору
+- Добавил ограничение на минимальное время приготовления (мин значение: 1)
+- Добавил разрешение на изменение рецепта только автору (проверял через Postman, запрос с put не проходит, на страницу переходит, но при попытке сохранить изменения/удалить не свой рецепт возникает ошибка, ранее ограничение IsAutor добавлялось только на PUT, но по факту там отправляется PATCH)
 
 [![foodgram_workflow](https://github.com/ilkaxd/foodgram-project-react/actions/workflows/foodgram_workflow.yaml/badge.svg)](https://github.com/ilkaxd/foodgram-project-react/blob/master/.github/workflows/foodgram_workflow.yaml)
 
