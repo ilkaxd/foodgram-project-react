@@ -24,7 +24,7 @@ class RecipeIngredient(DefaultModel):
         max_digits=5,
         validators=[
             GteMinValueValidator(
-                0,
+                1,
                 'Введите число больше нуля или удалите ингредиент.',
             ),
             MaxValueValidator(5000, 'Как-то многовато'),
@@ -36,14 +36,6 @@ class RecipeIngredient(DefaultModel):
         verbose_name_plural = 'ингредиенты в рецепте'
         default_related_name = 'recipeingredients'
         constraints = (
-            models.CheckConstraint(
-                name='amount_gt_0',
-                check=models.Q(amount__gt=0),
-            ),
-            models.CheckConstraint(
-                name='amount_lt_5000',
-                check=models.Q(amount__lt=5000),
-            ),
             models.UniqueConstraint(
                 fields=('recipe', 'ingredient'),
                 name='unique_recipe_ingredient',

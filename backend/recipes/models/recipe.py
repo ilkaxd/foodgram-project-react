@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Count, Exists, OuterRef, Q, Value
+from django.core.validators import MinValueValidator
 
 from config.extensions.models import DefaultQuerySet, TimestampedModel
 from recipes.models import Favorite
@@ -81,8 +82,8 @@ class Recipe(TimestampedModel):
         'время приготовления',
         validators=[
             GteMinValueValidator(
-                0,
-                'Введите число больше нуля или удалите ингредиент.',
+                1,
+                'Время приготовления не может быть меньше 1 минуты.',
             ),
         ]
     )
@@ -98,12 +99,12 @@ class Recipe(TimestampedModel):
         verbose_name = 'рецепт'
         verbose_name_plural = 'рецепты'
         default_related_name = 'recipes'
-        # constraints = (
-        #     models.UniqueConstraint(
-        #         fields=('author', 'name'),
-        #         name='unique_author_recipename',
-        #     ),
-        # )
+        constraints = (
+            models.UniqueConstraint(
+                fields=('author', 'name'),
+                name='unique_author_recipename',
+            ),
+        )
         ordering = ('-created', '-modified')
 
     def update(self, **data):
