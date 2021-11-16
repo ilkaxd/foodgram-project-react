@@ -25,7 +25,7 @@ class RecipeIngredient(DefaultModel):
         validators=[
             GteMinValueValidator(
                 1,
-                'Введите число больше нуля или удалите ингредиент.',
+                'Количество ингредиента не может быть меньше 1.',
             ),
             MaxValueValidator(5000, 'Как-то многовато'),
         ],

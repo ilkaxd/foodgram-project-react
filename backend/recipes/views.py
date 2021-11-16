@@ -27,6 +27,7 @@ class RecipeViewSet(AppViewSet):
         'list': AllowAny,
         'retrieve': AllowAny,
         'update': IsAuthor,
+        'partial_update': IsAuthor,
         'destroy': IsAuthor,
     }
     favorite_method_dispatcher = {
