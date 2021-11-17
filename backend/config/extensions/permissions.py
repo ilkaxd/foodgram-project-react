@@ -1,5 +1,5 @@
 from rest_framework.permissions import BasePermission
-
+from recipes.models import Recipe
 
 class NotGranted(BasePermission):
 
@@ -14,8 +14,9 @@ class IsAuthor(BasePermission):
 
 
 class IsUniqueRecipeForAuthor(BasePermission):
-    message = 'Нельзя создавать одинаковые рецепты'
+    message = 'Нельзя одним автором создавать одинаковые рецепты'
 
     def has_permission(self, request, view):
-        
-        return False
+        name = request.name
+        user = request.user
+        return not Recipe.objects.filter(name=name).filter(author=user).exists()
