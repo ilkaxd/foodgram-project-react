@@ -17,6 +17,6 @@ class IsUniqueRecipeForAuthor(BasePermission):
     message = 'Нельзя одним автором создавать одинаковые рецепты'
 
     def has_permission(self, request, view):
-        name = request.name
+        name = request.META['name']
         user = request.user
         return not Recipe.objects.filter(name=name).filter(author=user).exists()
