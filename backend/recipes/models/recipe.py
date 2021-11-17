@@ -99,12 +99,12 @@ class Recipe(TimestampedModel):
         verbose_name = 'рецепт'
         verbose_name_plural = 'рецепты'
         default_related_name = 'recipes'
-        constraints = (
-            models.UniqueConstraint(
-                fields=('author', 'name'),
-                name='unique_author_recipename',
-            ),
-        )
+        # constraints = (
+        #     models.UniqueConstraint(
+        #         fields=('author', 'name'),
+        #         name='unique_author_recipename',
+        #     ),
+        # )
         ordering = ('-created', '-modified')
 
     def update(self, **data):
