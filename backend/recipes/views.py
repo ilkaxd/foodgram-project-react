@@ -4,7 +4,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from config.extensions.permissions import IsAuthor
+from config.extensions.permissions import IsAuthor, IsUniqueRecipeForAuthor
 from config.extensions.views import AppViewSet
 from recipes import serializers
 from recipes.filters import RecipeFilter
@@ -17,7 +17,7 @@ class RecipeViewSet(AppViewSet):
     filterset_class = RecipeFilter
     serializer_class = serializers.RecipeSerializer
     serializer_action_classes = {
-        'create': serializers.RecipeCreateSerializer,
+        'create': [serializers.RecipeCreateSerializer, IsUniqueRecipeForAuthor],
         'update': serializers.RecipeUpdateSerializer,
         'partial_update': serializers.RecipeUpdateSerializer,
         'favorite': serializers.FavoriteSerializer,
