@@ -19,4 +19,4 @@ class IsUniqueRecipeForAuthor(BasePermission):
     def has_permission(self, request, view):
         name = request.POST.get('name')
         user = request.user
-        return not Recipe.objects.filter(name=name).filter(author=user).exists()
+        return not Recipe.objects.filter(name='рецепт').exists()
