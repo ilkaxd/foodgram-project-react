@@ -17,13 +17,14 @@ class RecipeViewSet(AppViewSet):
     filterset_class = RecipeFilter
     serializer_class = serializers.RecipeSerializer
     serializer_action_classes = {
-        'create': [serializers.RecipeCreateSerializer, IsUniqueRecipeForAuthor],
+        'create': serializers.RecipeCreateSerializer,
         'update': serializers.RecipeUpdateSerializer,
         'partial_update': serializers.RecipeUpdateSerializer,
         'favorite': serializers.FavoriteSerializer,
         'shopping_cart': serializers.ShoppingCartSerializer,
     }
     permission_action_classes = {
+        'create': IsUniqueRecipeForAuthor,
         'list': AllowAny,
         'retrieve': AllowAny,
         'update': IsAuthor,
